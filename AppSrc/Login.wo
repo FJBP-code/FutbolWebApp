@@ -1,4 +1,4 @@
-﻿Use cWebView.pkg
+Use cWebView.pkg
 Use cWebForm.pkg
 Use cWebButton.pkg
 Use cWebPanel.pkg
@@ -29,7 +29,7 @@ Object oLogin is a cWebView
     
     Object oWarning is a cWebLabel
         Set pbVisible to False
-        Set psCaption to "Invalid User ID or password. \n\rHint: 'admin' & 'admin'."
+        Set psCaption to "Invalid User ID or password."
         Set peAlign to alignCenter
         Set piColumnSpan to 12
         Set psCSSClass to "LoginWarning"
@@ -143,6 +143,7 @@ Object oLogin is a cWebView
     End_Procedure
     
 End_Object
+
 
 
 
