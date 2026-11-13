@@ -35,15 +35,9 @@ Object oSelectPosicion is a cWebView
         Set pbShowHeader to False
         Set piSortColumn to 0
 
-        Object oposicionID is a cWebColumn
-            Entry_Item posicion.ID
-            Set psCaption to "posicion.ID"
-            Set piWidth to 100
-        End_Object 
-
         Object oposicionNombre is a cWebColumn
             Entry_Item posicion.Nombre
-            Set psCaption to "posicion.Nombre"
+            Set psCaption to "Nombre"
             Set piWidth to 500
         End_Object 
 
