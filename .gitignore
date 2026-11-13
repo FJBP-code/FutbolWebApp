@@ -1,0 +1,31 @@
+# ==============================================
+# DataFlex Web Mobile Project - .gitignore
+# ==============================================
+
+# --- DataFlex IDE: metadatos locales del Studio (no versionar) ---
+/IdeSrc/
+
+# --- Ejecutables y depuración compilados ---
+/Programs/WebApp.exe
+/Programs/WebApp.dbg
+/Programs/WebApp.log
+
+# --- Logs y temporales ---
+*.log
+*.tmp
+*.swp
+~$*
+Thumbs.db
+.DS_Store
+
+# --- Salidas de build ---
+/bin/
+/obj/
+/Debug/
+/Release/
+/Publish/
+
+# --- NOTA: Data/ SÍ se versiona (contiene Filelist.cfg y tablas .dat/.hdr/.k1/.tag) ---
+# --- NOTA: AppHtml/ SÍ se versiona (framework web y recursos de la app) ---
+
+# End of file
