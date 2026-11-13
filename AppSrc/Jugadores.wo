@@ -57,18 +57,6 @@ Object oSelectJugadores is a cWebView
             Set piWidth to 600
         End_Object 
 
-        Object ojugadorNacionalidad is a cWebColumn
-            Entry_Item jugador.Nacionalidad
-            Set psCaption to "jugador.Nacionalidad"
-            Set piWidth to 500
-        End_Object 
-
-        Object oequipoID is a cWebColumn
-            Entry_Item equipo.ID
-            Set psCaption to "jugador.EquipoID"
-            Set piWidth to 100
-        End_Object 
-
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
             Set piWidth to 45
