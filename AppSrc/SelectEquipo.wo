@@ -42,14 +42,14 @@ Object oSelectEquipo is a cWebView
 
         Object oequipoNombre is a cWebColumn
             Entry_Item equipo.Nombre
-            Set psCaption to "equipo.Nombre"
-            Set piWidth to 1201
+            Set psCaption to "Nombre"
+            Set piWidth to 120
         End_Object 
 
         Object oligaID is a cWebColumn
-            Entry_Item liga.ID
-            Set psCaption to "equipo.LigaID"
-            Set piWidth to 100
+            Entry_Item liga.Nombre
+            Set psCaption to "Liga"
+            Set piWidth to 200
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
