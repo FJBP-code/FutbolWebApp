@@ -25,6 +25,13 @@ Thumbs.db
 /Release/
 /Publish/
 
+# --- Configuración de conexión a la BD (contiene credenciales: UID/contraseña) ---
+/Data/DFConnId.ini
+
+# --- Archivos intermedios de conversión y caché de DataFlex ---
+/Data/*.int
+/Data/*.cch
+
 # --- NOTA: Data/ SÍ se versiona (contiene Filelist.cfg y tablas .dat/.hdr/.k1/.tag) ---
 # --- NOTA: AppHtml/ SÍ se versiona (framework web y recursos de la app) ---
 
