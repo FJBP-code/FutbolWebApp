@@ -20,7 +20,7 @@ Object oSelectJugadores is a cWebView
     Set peViewType to vtSelect
     Set piColumnCount to 12
     Set pbShowCaption to False
-    Set piMaxWidth to 1024
+    Set piMaxWidth to 1224
 
     Object oliga_DD is a cligaDataDictionary
     End_Object 
@@ -59,7 +59,7 @@ Object oSelectJugadores is a cWebView
 
         Object oDetailButton is a cWebColumnButton
             Set psButtonCaption to "Detalle"
-            Set piWidth to 70
+            Set piWidth to 110
             Set pbFixedWidth to True
             Set pbResizable to False
             Set piListRowSpan to 1
