@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
 // ZoomEntrenador
 //
 
@@ -161,6 +161,8 @@ Object oZoomEntrenador is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -180,6 +182,20 @@ Object oZoomEntrenador is a cWebView
 
         Send SetActionButtons
 
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nuevo Entrenador" to sCaption
+                Case Break
+            Case Else
+                Move (Trim(Trim(entrenador.Nombre) + " " + Trim(entrenador.Apellido))) to sCaption
+                Case Break
+        Case End
+        WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
+
     End_Procedure
 
 End_Object 
+

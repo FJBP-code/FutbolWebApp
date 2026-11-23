@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
 // ZoomLiga
 //
 
@@ -169,6 +169,8 @@ Object oZoomLiga is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -188,6 +190,20 @@ Object oZoomLiga is a cWebView
 
         Send SetActionButtons
 
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nueva Liga" to sCaption
+                Case Break
+            Case Else
+                Move (Trim(liga.Nombre)) to sCaption
+                Case Break
+        Case End
+        WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
+
     End_Procedure
 
 End_Object 
+
