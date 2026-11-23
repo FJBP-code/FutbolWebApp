@@ -11,6 +11,7 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use SelectPosicion.wo
 Use SelectEquipo.wo
 
 Object oZoomJugador is a cWebView
@@ -63,6 +64,18 @@ Object oZoomJugador is a cWebView
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
+        End_Object 
+
+        Object oBtnVerPosiciones is a cWebButton
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCaption to "Ver posiciones"
+            
+            WebRegisterPath ntNavigateForward oSelectPosicion
+            
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
         End_Object 
 
         Object oequipoID is a cWebForm
