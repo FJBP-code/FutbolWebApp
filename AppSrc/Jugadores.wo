@@ -94,7 +94,7 @@ Object oSelectJugadores is a cWebView
                     Case Break
 
                 Case (NavigateData.eNavigateType = nfFromMain)
-                    Send NavigateClose Self
+                    Send NavigateForward of oZoomJugador Self
                     Case Break
 
                 Case Else // must be nfUndefined
