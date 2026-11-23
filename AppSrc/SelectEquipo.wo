@@ -89,7 +89,7 @@ Object oSelectEquipo is a cWebView
                     Case Break
 
                 Case (NavigateData.eNavigateType = nfFromMain)
-                    Send NavigateClose Self
+                    Send NavigateForward of oZoomEquipo Self
                     Case Break
 
                 Case Else // must be nfUndefined
@@ -105,6 +105,7 @@ Object oSelectEquipo is a cWebView
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
+        Set psGroupName to "MainActions"
 
         Object oSearch is a cWebMenuItem
             Set psCSSClass to "WebPromptMenuItem"

@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
 // ZoomLiga
 //
 
@@ -9,6 +9,7 @@ Use cWebMenuItem.pkg
 Use cWebForm.pkg
 
 Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd
 
 Object oZoomLiga is a cWebView
     Set piColumnCount to 12
@@ -20,6 +21,11 @@ Object oZoomLiga is a cWebView
     Set piMaxWidth to 1024
 
     Object oliga_DD is a cligaDataDictionary
+    End_Object 
+
+    Object oEquipo_DD is a cequipoDataDictionary
+        Set DDO_Server To oliga_DD
+        Set Constrain_File To liga.File_Number
     End_Object 
 
     Set Main_DD To oliga_DD
@@ -60,6 +66,26 @@ Object oZoomLiga is a cWebView
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
+        End_Object 
+
+        Object oListEquipos is a cWebList
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set Server to oEquipo_DD
+            Set pbDataAware to True
+            Set pbShowHeader to False
+
+            Object oequipoNombre is a cWebColumn
+                Entry_Item equipo.Nombre
+                Set psCaption to "Nombre"
+                Set piWidth to 1000
+            End_Object 
+
+            Object oequipoLiga is a cWebColumn
+                Entry_Item liga.Nombre
+                Set psCaption to "Liga"
+                Set piWidth to 200
+            End_Object 
         End_Object 
     End_Object 
 
@@ -143,6 +169,8 @@ Object oZoomLiga is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -162,6 +190,20 @@ Object oZoomLiga is a cWebView
 
         Send SetActionButtons
 
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nueva Liga" to sCaption
+                Case Break
+            Case Else
+                Move (Trim(liga.Nombre)) to sCaption
+                Case Break
+        Case End
+        WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
+
     End_Procedure
 
 End_Object 
+

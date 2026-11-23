@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
 // ZoomEntrenador
 //
 
@@ -11,6 +11,7 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use centrenadorDataDictionary.dd
+Use SelectEquipo.wo
 
 Object oZoomEntrenador is a cWebView
     Set piColumnCount to 12
@@ -72,8 +73,7 @@ Object oZoomEntrenador is a cWebView
             Set psLabel to "EquipoID"
             Set pbPromptButton to True
 
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oSelectView
+            WebRegisterPath ntNavigateForward oSelectEquipo
 
             Procedure OnPrompt
                 Send NavigatePath
@@ -161,6 +161,8 @@ Object oZoomEntrenador is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -180,6 +182,20 @@ Object oZoomEntrenador is a cWebView
 
         Send SetActionButtons
 
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nuevo Entrenador" to sCaption
+                Case Break
+            Case Else
+                Move (Trim(Trim(entrenador.Nombre) + " " + Trim(entrenador.Apellido))) to sCaption
+                Case Break
+        Case End
+        WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
+
     End_Procedure
 
 End_Object 
+

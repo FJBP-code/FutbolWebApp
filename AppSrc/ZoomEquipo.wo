@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
 // ZoomEquipo
 //
 
@@ -10,6 +10,7 @@ Use cWebForm.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
+Use SelectLiga.wo
 
 Object oZoomEquipo is a cWebView
     Set piColumnCount to 12
@@ -49,6 +50,13 @@ Object oZoomEquipo is a cWebView
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Liga"
+            Set pbPromptButton to True
+
+            WebRegisterPath ntNavigateForward oSelectLiga
+
+            Procedure OnPrompt
+                Send NavigatePath
+            End_Procedure
         End_Object 
     End_Object 
 
@@ -132,6 +140,8 @@ Object oZoomEquipo is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -151,6 +161,20 @@ Object oZoomEquipo is a cWebView
 
         Send SetActionButtons
 
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nuevo Equipo" to sCaption
+                Case Break
+            Case Else
+                Move (Trim(equipo.Nombre)) to sCaption
+                Case Break
+        Case End
+        WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
+
     End_Procedure
 
 End_Object 
+

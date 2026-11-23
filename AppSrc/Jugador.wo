@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\Jugador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\Jugador.wo
 // ZoomJugador
 //
 
@@ -11,6 +11,8 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use SelectPosicion.wo
+Use SelectEquipo.wo
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -64,6 +66,18 @@ Object oZoomJugador is a cWebView
             Set psLabel to "Nacionalidad"
         End_Object 
 
+        Object oBtnVerPosiciones is a cWebButton
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCaption to "Ver posiciones"
+            
+            WebRegisterPath ntNavigateForward oSelectPosicion
+            
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object 
+
         Object oequipoID is a cWebForm
             Entry_Item equipo.ID
             Set piColumnSpan to 2
@@ -72,8 +86,7 @@ Object oZoomJugador is a cWebView
             Set psLabel to "EquipoID"
             Set pbPromptButton to True
 
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oSelectView
+            WebRegisterPath ntNavigateForward oSelectEquipo
 
             Procedure OnPrompt
                 Send NavigatePath
@@ -161,6 +174,8 @@ Object oZoomJugador is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -180,6 +195,25 @@ Object oZoomJugador is a cWebView
 
         Send SetActionButtons
 
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nuevo Jugador" to sCaption
+                Case Break
+            Case Else
+                Move (Trim(Trim(jugador.Nombre) + " " + Trim(jugador.Apellido))) to sCaption
+                Case Break
+        Case End
+        String sOrigen
+        Move (NamedValueGet(NavigateData.NamedValues, "origen")) to sOrigen
+        If (sOrigen <> "") Begin
+            Move (sCaption + " [" + sOrigen + "]") to sCaption
+        End
+        WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
+
     End_Procedure
 
 End_Object 
+
