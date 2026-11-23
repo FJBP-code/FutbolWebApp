@@ -169,6 +169,8 @@ Object oZoomLiga is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -187,6 +189,17 @@ Object oZoomLiga is a cWebView
         Case End
 
         Send SetActionButtons
+
+        String sCaption
+        Case Begin
+            Case (NavigateData.bNewRecord)
+                Move "Nueva Liga" to sCaption
+                Case Break
+            Case Else
+                Move Trim(liga.Nombre) to sCaption
+                Case Break
+        Case End
+        WebSet psCaption of oZoomLiga to sCaption
 
     End_Procedure
 
