@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
 // ZoomEntrenador
 //
 
@@ -192,7 +192,10 @@ Object oZoomEntrenador is a cWebView
                 Case Break
         Case End
         WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
 
     End_Procedure
 
 End_Object 
+

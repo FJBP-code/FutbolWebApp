@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
 // ZoomEquipo
 //
 
@@ -171,7 +171,10 @@ Object oZoomEquipo is a cWebView
                 Case Break
         Case End
         WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
 
     End_Procedure
 
 End_Object 
+

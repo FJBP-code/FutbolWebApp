@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\Jugador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\Jugador.wo
 // ZoomJugador
 //
 
@@ -205,7 +205,10 @@ Object oZoomJugador is a cWebView
                 Case Break
         Case End
         WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
 
     End_Procedure
 
 End_Object 
+

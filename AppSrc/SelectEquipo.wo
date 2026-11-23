@@ -105,6 +105,7 @@ Object oSelectEquipo is a cWebView
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
+        Set psGroupName to "MainActions"
 
         Object oSearch is a cWebMenuItem
             Set psCSSClass to "WebPromptMenuItem"

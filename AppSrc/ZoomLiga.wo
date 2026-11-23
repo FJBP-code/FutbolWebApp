@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
 // ZoomLiga
 //
 
@@ -200,7 +200,10 @@ Object oZoomLiga is a cWebView
                 Case Break
         Case End
         WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
 
     End_Procedure
 
 End_Object 
+

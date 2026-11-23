@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomPosicion.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomPosicion.wo
 // ZoomPosicion
 //
 
@@ -150,7 +150,10 @@ Object oZoomPosicion is a cWebView
                 Case Break
         Case End
         WebSet psCaption to sCaption
+        Send SetHeaderCaption sCaption
+        Send SetBreadcrumbCaption sCaption
 
     End_Procedure
 
 End_Object 
+
