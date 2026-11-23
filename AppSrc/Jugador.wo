@@ -204,6 +204,11 @@ Object oZoomJugador is a cWebView
                 Move (Trim(Trim(jugador.Nombre) + " " + Trim(jugador.Apellido))) to sCaption
                 Case Break
         Case End
+        String sOrigen
+        Move (NamedValueGet(NavigateData.NamedValues, "origen")) to sOrigen
+        If (sOrigen <> "") Begin
+            Move (sCaption + " [" + sOrigen + "]") to sCaption
+        End
         WebSet psCaption to sCaption
         Send SetHeaderCaption sCaption
         Send SetBreadcrumbCaption sCaption

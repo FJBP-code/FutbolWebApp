@@ -74,6 +74,7 @@ Object oSelectJugadores is a cWebView
 
             Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
                 Move True to NavigateData.bReadOnly
+                Move (NamedValueAdd(NavigateData.NamedValues, "origen", "detail")) to NavigateData.NamedValues
             End_Procedure
 
         End_Object 
@@ -105,6 +106,7 @@ Object oSelectJugadores is a cWebView
 
         Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
             Move True to NavigateData.bReadOnly
+            Move (NamedValueAdd(NavigateData.NamedValues, "origen", "fila")) to NavigateData.NamedValues
         End_Procedure
 
     End_Object 
