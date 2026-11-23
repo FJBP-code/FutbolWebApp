@@ -146,10 +146,10 @@ Object oZoomPosicion is a cWebView
                 Move "Nueva Posición" to sCaption
                 Case Break
             Case Else
-                Move Trim(posicion.Nombre) to sCaption
+                Move (Trim(posicion.Nombre)) to sCaption
                 Case Break
         Case End
-        WebSet psCaption of oZoomPosicion to sCaption
+        WebSet psCaption to sCaption
 
     End_Procedure
 

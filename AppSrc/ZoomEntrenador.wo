@@ -188,10 +188,10 @@ Object oZoomEntrenador is a cWebView
                 Move "Nuevo Entrenador" to sCaption
                 Case Break
             Case Else
-                Move Trim(Trim(entrenador.Nombre) + " " + Trim(entrenador.Apellido)) to sCaption
+                Move (Trim(Trim(entrenador.Nombre) + " " + Trim(entrenador.Apellido))) to sCaption
                 Case Break
         Case End
-        WebSet psCaption of oZoomEntrenador to sCaption
+        WebSet psCaption to sCaption
 
     End_Procedure
 

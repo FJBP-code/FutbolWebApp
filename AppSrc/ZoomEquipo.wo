@@ -167,10 +167,10 @@ Object oZoomEquipo is a cWebView
                 Move "Nuevo Equipo" to sCaption
                 Case Break
             Case Else
-                Move Trim(equipo.Nombre) to sCaption
+                Move (Trim(equipo.Nombre)) to sCaption
                 Case Break
         Case End
-        WebSet psCaption of oZoomEquipo to sCaption
+        WebSet psCaption to sCaption
 
     End_Procedure
 
