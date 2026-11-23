@@ -58,12 +58,12 @@ Object oSelectJugadores is a cWebView
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
-            Set psCaption to "btn"
-            Set piWidth to 45
+            Set psButtonCaption to "Detalle"
+            Set piWidth to 70
             Set pbFixedWidth to True
             Set pbResizable to False
             Set piListRowSpan to 1
-            Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
+            Set psBtnCssClass to "WebButton"
             Set peAlign to alignRight
 
             WebRegisterPath ntNavigateForward oZoomJugador
@@ -74,6 +74,7 @@ Object oSelectJugadores is a cWebView
 
             Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
                 Move True to NavigateData.bReadOnly
+                Move (NamedValueAdd(NavigateData.NamedValues, "origen", "detail")) to NavigateData.NamedValues
             End_Procedure
 
         End_Object 
@@ -105,6 +106,7 @@ Object oSelectJugadores is a cWebView
 
         Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
             Move True to NavigateData.bReadOnly
+            Move (NamedValueAdd(NavigateData.NamedValues, "origen", "fila")) to NavigateData.NamedValues
         End_Procedure
 
     End_Object 
@@ -147,7 +149,7 @@ Object oSelectJugadores is a cWebView
             Case (NavigateData.eNavigateType = nfFromParent)
                 // If from parent, this is a constrained drill down
                 // If Row select does main-zoom we don't need this
-                WebSet pbRender of oDetailButton to False
+                WebSet pbRender of oDetailButton to True
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromChild)
@@ -156,13 +158,13 @@ Object oSelectJugadores is a cWebView
 
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a probably a main-file lookup from a Zoom
-                WebSet pbRender of oDetailButton to False
+                WebSet pbRender of oDetailButton to True
                 Case Break
 
             Case Else // must be nfUndefined
                 // This may be the start of a drilldown query or this may be used for some kind of custom query.
                 // If Row select does main-zoom we don't need this
-                WebSet pbRender of oDetailButton to False
+                WebSet pbRender of oDetailButton to True
 
         Case End
 
