@@ -158,7 +158,7 @@ Object oSelectJugadores is a cWebView
 
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a probably a main-file lookup from a Zoom
-                WebSet pbRender of oDetailButton to False
+                WebSet pbRender of oDetailButton to True
                 Case Break
 
             Case Else // must be nfUndefined
