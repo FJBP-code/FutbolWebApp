@@ -78,7 +78,7 @@ Object oSelectLiga is a cWebView
                     Case Break
 
                 Case (NavigateData.eNavigateType = nfFromMain)
-                    Send NavigateClose Self
+                    Send NavigateForward of oZoomLiga Self
                     Case Break
 
                 Case Else // must be nfUndefined
